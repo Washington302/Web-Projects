@@ -25,7 +25,7 @@ const checkAuthorization = (req, res, next) => {
 
 app.get("/", routes.home);
 app.get("/signup", routes.signUp);
-app.post("/signup", routes.signUpAction);
+app.post("/signup",urlEncodedParser, routes.signUpAction);
 app.get("/login", routes.logIn);
 app.post("/login", urlEncodedParser, routes.logInAction);
 app.get("/dashboard", checkAuthorization, routes.dashboard);
