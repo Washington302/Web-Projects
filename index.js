@@ -2,8 +2,7 @@ const express = require('express'),
     pug = require('pug'),
     path = require('path'),
     routes = require('./routes/routes'),
-    expressSession = require('express-session'),
-    bcrypt = require('bcryptjs');
+    expressSession = require('express-session');
 
 const app = express();
 
@@ -26,10 +25,14 @@ const checkAuthorization = (req, res, next) => {
 
 app.get("/", routes.home);
 app.get("/signup", routes.signUp);
-app.post("/signup", routes.signUpAction);
+app.post("/signup",urlEncodedParser, routes.signUpAction);
 app.get("/login", routes.logIn);
 app.post("/login", urlEncodedParser, routes.logInAction);
 app.get("/dashboard", checkAuthorization, routes.dashboard);
+app.get("/poker", routes.poker);
+app.get("/blackjack", routes.blackjack);
+app.get("/slots", routes.slots);
+app.get("/roulette", routes.roulette);
 
 app.get('/logout', (req, res) => {
     req.session.destroy(err => {

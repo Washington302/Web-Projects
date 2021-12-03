@@ -1,4 +1,5 @@
 const {MongoClient, ObjectId} = require('mongodb');
+const bcrypt = require('bcryptjs');
 
 const url = `mongodb+srv://group:pro150@userinformation.xrasy.mongodb.net/UserInformation?retryWrites=true&w=majority`;
 
@@ -24,7 +25,11 @@ exports.signUp = (req, res) => {
 exports.signUpAction = async (req, res) => {
     await client.connect();
     let salt = bcrypt.genSaltSync(10);
-    let hash = bcrypt.hashSync(req.body.pass, salt);
+    
+    let pass = req.body.password;
+    
+    console.log(pass);
+    let hash = bcrypt.hashSync(pass, salt);
     let account = {
         username: req.body.username,
         password: hash,
@@ -40,9 +45,10 @@ exports.logIn = (req, res) => {
 
 exports.logInAction = async (req, res) => {
     await client.connect();
+    console.log(req.body.password)
     const userResults = userCollection.find({username: req.body.username})
     client.close();
-    if(userResults.pass == req.body.pass){
+    if(userResults.password == req.body.password){
         req.session.user = {
             isAuthenticated: true,
             username: req.body.username
@@ -60,18 +66,18 @@ exports.dashboard = (req, res) => {
     res.render("dashboard",{});
 };
 
-exports.blackJack = (req, res) => {
-
+exports.blackjack = (req, res) => {
+    res.render("blackJack", {});
 };
 
 exports.roulette = (req, res) => {
-
+    res.render("roulette", {});
 };
 
 exports.slots = (req, res) => {
-
+    res.render("slots", {});
 };
 
 exports.poker = (req, res) => {
-
+    res.render("poker", {});
 };
