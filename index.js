@@ -30,7 +30,7 @@ app.get("/login", routes.logIn);
 app.post("/login", urlEncodedParser, routes.logInAction);
 app.get("/dashboard", checkAuthorization, routes.dashboard);
 app.get("/poker", routes.poker);
-app.get("/blackjack", routes.blackJack);
+app.get("/blackjack", routes.blackjack);
 app.get("/slots", routes.slots);
 app.get("/roulette", routes.roulette);
 

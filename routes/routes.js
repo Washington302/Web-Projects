@@ -11,8 +11,6 @@ const db = client.db(dbName);
 
 const userCollection = db.collection("Account")
 
-const bcrypt = require('bcryptjs');
-
 const config = require('../config');
 const fs = require('fs');
 
