@@ -2,8 +2,7 @@ const express = require('express'),
     pug = require('pug'),
     path = require('path'),
     routes = require('./routes/routes'),
-    expressSession = require('express-session'),
-    bcrypt = require('bcryptjs');
+    expressSession = require('express-session');
 
 const app = express();
 
