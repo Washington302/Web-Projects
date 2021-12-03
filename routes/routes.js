@@ -45,6 +45,7 @@ exports.logIn = (req, res) => {
 
 exports.logInAction = async (req, res) => {
     await client.connect();
+    console.log(req.body.password)
     const userResults = userCollection.find({username: req.body.username})
     client.close();
     if(userResults.password == req.body.password){

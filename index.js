@@ -25,7 +25,11 @@ const checkAuthorization = (req, res, next) => {
 
 app.get("/", routes.home);
 app.get("/signup", routes.signUp);
+<<<<<<< Updated upstream
 app.post("/signup",urlEncodedParser, routes.signUpAction);
+=======
+app.post("/signup", urlEncodedParser, routes.signUpAction);
+>>>>>>> Stashed changes
 app.get("/login", routes.logIn);
 app.post("/login", urlEncodedParser, routes.logInAction);
 app.get("/dashboard", checkAuthorization, routes.dashboard);
