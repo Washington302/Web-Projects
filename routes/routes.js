@@ -33,7 +33,8 @@ exports.signUpAction = async (req, res) => {
     let account = {
         username: req.body.username,
         password: hash,
-        currency:1000
+        currency:1000,
+        email: req.body.email
     }
     const insertResult = await userCollection.insertOne(account);
     client.close();
