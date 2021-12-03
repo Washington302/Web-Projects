@@ -1,0 +1,71 @@
+doctype html
+html(lang='en')
+  head
+    title Casino Website - Log in
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    style.
+      body {font-family: "Lato", sans-serif}
+      .fa {
+      font-size: 24px;
+      }
+      .tx {
+      font-size: 18px;
+      }
+  body
+    // Navbar
+    .w3-top
+      .w3-bar.w3-black.w3-card
+        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-medium.w3-hide-large.w3-right(href='javascript:void(0)' onclick='myFunction()' title='Toggle Navigation Menu')
+          i.fa.fa-bars
+        a.w3-bar-item.w3-button.w3-padding-large.tx(href='index.html') HOME
+        .w3-dropdown-hover.w3-hide-small
+          button.w3-padding-large.w3-button(title='More')
+            | GAMES 
+            i.fa.fa-caret-down
+          .w3-dropdown-content.w3-bar-block.w3-card-4
+            a.w3-bar-item.w3-button(href='#') ROULETTE
+            a.w3-bar-item.w3-button(href='#') SLOTS
+            a.w3-bar-item.w3-button(href='#') BLACKJACK
+        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-small.w3-right(href='#')
+          i.fa.fa-sign-in
+          |  LOG IN
+        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-small.w3-right(href='signup.html')
+          i.fa.fa-user-circle
+          |  SIGN IN
+    #navDemo.w3-bar-block.w3-black.w3-hide.w3-hide-large.w3-hide-medium.w3-top(style='margin-top:46px')
+      a.w3-bar-item.w3-button.w3-padding-large(href='games.html' onclick='myFunction()') GAMES
+      a.w3-bar-item.w3-button.w3-padding-large(href='signup.html' onclick='myFunction()')
+        i.fa.fa-user-circle
+        |  SIGN IN
+      a.w3-bar-item.w3-button.w3-padding-large(href='login.html' onclick='myFunction()')
+        i.fa.fa-sign-in
+        |  LOG IN
+    .w3-content(style='max-width:2000px;margin-top:46px')
+      #contact.w3-container.w3-content.w3-padding-64(style='max-width:800px')
+        h2.w3-wide.w3-center LOG IN
+        p.w3-opacity.w3-center
+          i Welcome back. Hope your games are good.
+        .w3-row.w3-padding-32
+          .w3-col.m12
+            form(action='/login', method='post')
+              .w3-row-padding(style='margin:0 -16px 8px -16px')
+              input.w3-input.w3-border(type='text', placeholder='Username', name='username')
+              br
+              input.w3-input.w3-border(type='password', placeholder='Password', name='password')
+              button.w3-button.w3-black.w3-section.w3-right(type='submit') SIGN UP
+          p.w3-right
+            a(href='signup.html') Don't have and account?
+      // End Page Content
+    script.
+      function myFunction() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
+      x.className += " w3-show";
+      } else {
+      x.className = x.className.replace(" w3-show", "");
+      }
+      }

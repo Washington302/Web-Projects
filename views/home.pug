@@ -1,0 +1,179 @@
+doctype html
+html(lang='en')
+  head
+    title Casino Website - Home
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    style.
+      body {font-family: "Lato", sans-serif}
+      .mySlides {display: none}
+      .fa {
+      font-size: 24px;
+      }
+      .tx {
+      font-size: 18px;
+      }
+  body
+    // Navbar
+    .w3-top
+      .w3-bar.w3-black.w3-card
+        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-medium.w3-hide-large.w3-right(href='javascript:void(0)' onclick='myFunction()' title='Toggle Navigation Menu')
+          i.fa.fa-bars
+        a.w3-bar-item.w3-button.w3-padding-large.tx(href='#') HOME
+        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-small.w3-right(href='/login')
+          i.fa.fa-sign-in
+          |  LOG IN
+        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-small.w3-right(href='/signup')
+          i.fa.fa-user-circle
+          |  SIGN IN
+    #navDemo.w3-bar-block.w3-black.w3-hide.w3-hide-large.w3-hide-medium.w3-top(style='margin-top:46px')
+      a.w3-bar-item.w3-button.w3-padding-large(href='/signup' onclick='myFunction()')
+        i.fa.fa-user-circle
+        |  SIGN IN
+      a.w3-bar-item.w3-button.w3-padding-large(href='/login' onclick='myFunction()')
+        i.fa.fa-sign-in
+        |  LOG IN
+    .w3-content(style='max-width:2000px;margin-top:46px')
+      .mySlides.w3-display-container.w3-center
+        img(src='ProductRobot.png' style='width:100%')
+        .w3-display-bottommiddle.w3-container.w3-text-white.w3-padding-32.w3-hide-small
+          h3 Los Angeles
+          p
+            b We had the best time playing at Venice Beach!
+      .mySlides.w3-display-container.w3-center
+        img(src='ProductRobot.png' style='width:100%')
+        .w3-display-bottommiddle.w3-container.w3-text-white.w3-padding-32.w3-hide-small
+          h3 New York
+          p
+            b The atmosphere in New York is lorem ipsum.
+      .mySlides.w3-display-container.w3-center
+        img(src='ProductRobot.png' style='width:100%')
+        .w3-display-bottommiddle.w3-container.w3-text-white.w3-padding-32.w3-hide-small
+          h3 Chicago
+          p
+            b Thank you, Chicago - A night we won't forget.
+      #band.w3-container.w3-content.w3-center.w3-padding-64(style='max-width:800px')
+        h2.w3-wide ABOUT US
+        p.w3-opacity
+          i We love the roll of the dice.
+        p.w3-justify
+          | Luck be a lady, but the people who court her are college students from Neumont. With a goal to make games, we decided to instead of doing a multitude of games so we can get as many points as possible. With currency given to active users, we hope to foster a community that is "highly devoted" playerbase.
+        .w3-row.w3-padding-32
+          .w3-half
+            p Andrew Newberry
+            img.w3-round(src='/w3images/bandmember.jpg' alt='Random Name' style='width:60%')
+          .w3-half
+            p James Stephen
+            img.w3-round(src='/w3images/bandmember.jpg' alt='Random Name' style='width:60%')
+        .w3-row.w3-padding-32
+          .w3-half
+            p Kaleb Washington
+            img.w3-round(src='/w3images/bandmember.jpg' alt='Random Name' style='width:60%')
+          .w3-half
+            p Jacob Wirfs
+            img.w3-round.w3-margin-bottom(src='/w3images/bandmember.jpg' alt='Random Name' style='width:60%')
+        .w3-row.w3-padding-32
+          .w3-m12
+            p Daniel Larmore
+            img.w3-round.w3-margin-bottom(src='/w3images/bandmember.jpg' alt='Random Name' style='width:60%')
+      // The Tour Section
+      #tour.w3-black
+        .w3-container.w3-content.w3-padding-64(style='max-width:800px')
+          .w3-row-padding.w3-padding-32(style='margin:0 -16px')
+            .w3-third.w3-margin-bottom
+              img.w3-hover-opacity(src='/w3images/newyork.jpg' alt='Roulette' style='width:100%')
+              .w3-container.w3-white
+                p
+                  b Roulette
+                p
+                  | As the wheel turns and turns. So can your luck can turn around for the better. Try our roulette, winning is just a spin away.
+                button.w3-button.w3-black.w3-margin-bottom(onclick="document.getElementById('gameModal').style.display='block'") Play Now!
+            .w3-third.w3-margin-bottom
+              img.w3-hover-opacity(src='/w3images/paris.jpg' alt='Slots' style='width:100%')
+              .w3-container.w3-white
+                p
+                  b Slots
+                p
+                  | One... Two... Three... Watch at these cyliners lock into place with the slots. Pull lever and try to get an amazing combo.
+                button.w3-button.w3-black.w3-margin-bottom(onclick="document.getElementById('gameModal').style.display='block'") Play Now!
+            .w3-third.w3-margin-bottom
+              img.w3-hover-opacity(src='/w3images/sanfran.jpg' alt='Blackjack' style='width:100%')
+              .w3-container.w3-white
+                p
+                  b Blackjack
+                p
+                  | If the answer to life is 42, then at least the answer to half of everything is Blackjack. Try to get 21 and beat the house.
+                button.w3-button.w3-black.w3-margin-bottom(onclick="document.getElementById('gameModal').style.display='block'") Play Now!
+      #gameModal.w3-modal
+        .w3-modal-content.w3-animate-top.w3-card-4
+          header.w3-container.w3-teal.w3-center.w3-padding-32
+            span.w3-button.w3-teal.w3-xlarge.w3-display-topright(onclick="document.getElementById('gameModal').style.display='none'") ×
+            h2.w3-wide
+              i.fa.fa-suitcase.w3-margin-right
+              | Tickets
+          .w3-container
+            p
+              label
+                i.fa.fa-shopping-cart
+                |  Tickets, $15 per person
+            input.w3-input.w3-border(type='text' placeholder='How many?')
+            p
+              label
+                i.fa.fa-user
+                |  Send To
+            input.w3-input.w3-border(type='text' placeholder='Enter email')
+            button.w3-button.w3-block.w3-teal.w3-padding-16.w3-section.w3-right
+              | PAY 
+              i.fa.fa-check
+            button.w3-button.w3-red.w3-section(onclick="document.getElementById('gameModal').style.display='none'")
+              | Close 
+              i.fa.fa-remove
+            p.w3-right
+              | Need 
+              a.w3-text-blue(href='#') help?
+      // End Page Content
+      // Footer
+      footer.w3-container.w3-padding-64.w3-center.w3-opacity.w3-light-grey.w3-xlarge
+        a(href='#')
+          i.fa.fa-facebook-official.w3-hover-opacity
+        a(href='#')
+          i.fa.fa-instagram.w3-hover-opacity
+        a(href='#')
+          i.fa.fa-snapchat.w3-hover-opacity
+        a(href='#')
+          i.fa.fa-pinterest-p.w3-hover-opacity
+        a(href='#')
+          i.fa.fa-twitter.w3-hover-opacity
+        a(href='#')
+          i.fa.fa-linkedin.w3-hover-opacity
+      script.
+        var myIndex = 0;
+        carousel();
+        function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) {myIndex = 1}
+        x[myIndex-1].style.display = "block";
+        setTimeout(carousel, 4000);
+        }
+        function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        } else {
+        x.className = x.className.replace(" w3-show", "");
+        }
+        }
+        var modal = document.getElementById('gameModal');
+        window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none";
+        }
+        }

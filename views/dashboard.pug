@@ -1,0 +1,90 @@
+doctype html
+html(lang='en')
+  head
+    title Casino Website - Dashboard
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    style.
+      body {font-family: "Lato", sans-serif}
+      .mySlides {display: none}
+      .fa {
+      font-size: 24px;
+      }
+      .tx {
+      font-size: 18px;
+      }
+  body
+    // Navbar
+    .w3-top
+      .w3-bar.w3-black.w3-card
+        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-medium.w3-hide-large.w3-right(href='javascript:void(0)' onclick='myFunction()' title='Toggle Navigation Menu')
+          i.fa.fa-bars
+        a.w3-bar-item.w3-button.w3-padding-large.tx(href='/') HOME
+        .w3-dropdown-hover.w3-hide-small
+          button.w3-padding-large.w3-button(title='More')
+            | SINGLE-PLAYER GAMES 
+            i.fa.fa-caret-down
+          .w3-dropdown-content.w3-bar-block.w3-card-4
+            a.w3-bar-item.w3-button(href='#') ROULETTE
+            a.w3-bar-item.w3-button(href='#') SLOTS
+            a.w3-bar-item.w3-button(href='#') BLACKJACK
+        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-small.w3-right(href='/login')
+          i.fa.fa-sign-in
+          |  LOG IN
+        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-small.w3-right(href='/signup')
+          i.fa.fa-user-circle
+          |  SIGN IN
+    #navDemo.w3-bar-block.w3-black.w3-hide.w3-hide-large.w3-hide-medium.w3-top(style='margin-top:46px')
+      a.w3-bar-item.w3-button.w3-padding-large(href='#' onclick='myFunction()') GAMES
+      a.w3-bar-item.w3-button.w3-padding-large(href='/signup' onclick='myFunction()')
+        i.fa.fa-user-circle
+        |  SIGN IN
+      a.w3-bar-item.w3-button.w3-padding-large(href='/login' onclick='myFunction()')
+        i.fa.fa-sign-in
+        |  LOG IN
+    .w3-content(style='max-width:2000px;margin-top:46px')
+      .w3-container.w3-content.w3-padding-64(style='max-width:800px;')
+        .w3-row-padding.w3-padding-32(style='margin:0 -16px')
+          .w3-half
+            h2#usernameStuff.w3-center=`Hello, User`
+          .w3-half
+            h2#usernameStuff.w3-center Balance: -----
+        .w3-row-padding.w3-padding-32(style='margin:0 -16px')
+          h4#usernameStuff.w3-center You will be shown as: Test User.
+        .w3-row-padding.w3-padding-32(style='margin:0 -16px')
+          form(action='/changeNickName' method="post")
+            input.w3-input.w3-border(type='text' placeholder='Nickname' required='' name='Nickname')
+            button.w3-button.w3-black.w3-section.w3-right(type='submit') CHANGE NICKNAME
+        .w3-row-padding.w3-padding-32(style='margin:0 -16px')
+          form(action='/changePassword' method="post")
+            input.w3-input.w3-border(type='password' placeholder='Password' required='' name='Password')
+            br
+            input.w3-input.w3-border(type='password' placeholder='Retype Password' required='' name='Password1')
+            button.w3-button.w3-black.w3-section.w3-right(type='submit') CHANGE PASSWORD
+      // End Page Content
+      // Footer
+      footer.w3-container.w3-padding-64.w3-center.w3-opacity.w3-light-grey.w3-xlarge
+        a(href='#')
+          i.fa.fa-facebook-official.w3-hover-opacity
+        a(href='#')
+          i.fa.fa-instagram.w3-hover-opacity
+        a(href='#')
+          i.fa.fa-snapchat.w3-hover-opacity
+        a(href='#')
+          i.fa.fa-pinterest-p.w3-hover-opacity
+        a(href='#')
+          i.fa.fa-twitter.w3-hover-opacity
+        a(href='#')
+          i.fa.fa-linkedin.w3-hover-opacity
+      script.
+        function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        } else {
+        x.className = x.className.replace(" w3-show", "");
+        }
+        }
