@@ -38,7 +38,7 @@ exports.signUpAction = async (req, res) => {
     }
     const insertResult = await userCollection.insertOne(account);
     client.close();
-    res.redirect("home")
+    res.redirect("/")
 };
 
 exports.logIn = (req, res) => {
