@@ -35,7 +35,7 @@ exports.signUpAction = async (req, res) => {
         password: hash,
         currency:1000
     }
-    const insertResult = await collection.insertOne(account);
+    const insertResult = await userCollection.insertOne(account);
     client.close();
 };
 
