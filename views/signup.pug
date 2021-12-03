@@ -22,28 +22,20 @@ html(lang='en')
       .w3-bar.w3-black.w3-card
         a.w3-bar-item.w3-button.w3-padding-large.w3-hide-medium.w3-hide-large.w3-right(href='javascript:void(0)' onclick='myFunction()' title='Toggle Navigation Menu')
           i.fa.fa-bars
-        a.w3-bar-item.w3-button.w3-padding-large.tx(href='index.html') HOME
+        a.w3-bar-item.w3-button.w3-padding-large.tx(href='/') HOME
         .w3-dropdown-hover.w3-hide-small
-          button.w3-padding-large.w3-button(title='More')
-            | GAMES 
-            i.fa.fa-caret-down
-          .w3-dropdown-content.w3-bar-block.w3-card-4
-            a.w3-bar-item.w3-button(href='#') ROULETTE
-            a.w3-bar-item.w3-button(href='#') SLOTS
-            a.w3-bar-item.w3-button(href='#') BLACKJACK
-        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-small.w3-right(href='login.html')
+        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-small.w3-right(href='/login')
           i.fa.fa-sign-in
           |  LOG IN
-        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-small.w3-right(href='signup.html')
+        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-small.w3-right(href='/signup')
           i.fa.fa-user-circle
           |  SIGN IN
     #navDemo.w3-bar-block.w3-black.w3-hide.w3-hide-large.w3-hide-medium.w3-top(style='margin-top:46px')
       a.w3-bar-item.w3-button.w3-padding-large(href='#' onclick='myFunction()') CONTACT
-      a.w3-bar-item.w3-button.w3-padding-large(href='games.html' onclick='myFunction()') GAMES
-      a.w3-bar-item.w3-button.w3-padding-large(href='signup.html' onclick='myFunction()')
+      a.w3-bar-item.w3-button.w3-padding-large(href='/signup' onclick='myFunction()')
         i.fa.fa-user-circle
         |  SIGN IN
-      a.w3-bar-item.w3-button.w3-padding-large(href='login.html' onclick='myFunction()')
+      a.w3-bar-item.w3-button.w3-padding-large(href='/login' onclick='myFunction()')
         i.fa.fa-sign-in
         |  LOG IN
     .w3-content(style='max-width:2000px;margin-top:46px')
@@ -53,7 +45,7 @@ html(lang='en')
           i Join to play our games!
         .w3-row.w3-padding-32
           .w3-col.m12
-            form(action='/signup'method="post")
+            form(action='/signup' method="post")
               input.w3-input.w3-border(type='text' placeholder='Email' required='' name='Email')
               br
               .w3-row-padding(style='margin:0 -16px 8px -16px')
