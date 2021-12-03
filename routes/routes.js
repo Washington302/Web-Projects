@@ -1,4 +1,5 @@
 const {MongoClient, ObjectId} = require('mongodb');
+const bcrypt = require('bcryptjs');
 
 const url = `mongodb+srv://group:pro150@userinformation.xrasy.mongodb.net/UserInformation?retryWrites=true&w=majority`;
 
@@ -60,18 +61,18 @@ exports.dashboard = (req, res) => {
     res.render("dashboard",{});
 };
 
-exports.blackJack = (req, res) => {
-
+exports.blackjack = (req, res) => {
+    res.render("blackJack", {});
 };
 
 exports.roulette = (req, res) => {
-
+    res.render("roulette", {});
 };
 
 exports.slots = (req, res) => {
-
+    res.render("slots", {});
 };
 
 exports.poker = (req, res) => {
-
+    res.render("poker", {});
 };

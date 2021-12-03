@@ -30,6 +30,10 @@ app.post("/signup", routes.signUpAction);
 app.get("/login", routes.logIn);
 app.post("/login", urlEncodedParser, routes.logInAction);
 app.get("/dashboard", checkAuthorization, routes.dashboard);
+app.get("/poker", routes.poker);
+app.get("/blackjack", routes.blackJack);
+app.get("/slots", routes.slots);
+app.get("/roulette", routes.roulette);
 
 app.get('/logout', (req, res) => {
     req.session.destroy(err => {
