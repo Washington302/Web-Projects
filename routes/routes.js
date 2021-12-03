@@ -24,7 +24,7 @@ exports.signUp = (req, res) => {
 exports.signUpAction = async (req, res) => {
     await client.connect();
     let salt = bcrypt.genSaltSync(10);
-    let hash = bcrypt.hashSync(req.body.pass, salt);
+    let hash = bcrypt.hashSync(req.body.password, salt);
     let account = {
         username: req.body.username,
         password: hash,
@@ -42,7 +42,7 @@ exports.logInAction = async (req, res) => {
     await client.connect();
     const userResults = userCollection.find({username: req.body.username})
     client.close();
-    if(userResults.pass == req.body.pass){
+    if(userResults.password == req.body.password){
         req.session.user = {
             isAuthenticated: true,
             username: req.body.username
