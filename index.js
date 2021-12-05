@@ -31,8 +31,7 @@ app.post("/login", urlEncodedParser, routes.logInAction);
 app.get("/dashboard", checkAuthorization, routes.dashboard);
 app.get("/poker", checkAuthorization, routes.poker);
 app.get("/blackjack", checkAuthorization, routes.blackjack);
-//app.get("/slots", checkAuthorization, routes.slots);
-app.get("/slots", routes.slots);
+app.get("/slots", checkAuthorization, routes.slots);
 app.get("/roulette", checkAuthorization, routes.roulette);
 
 app.get('/logout', (req, res) => {
