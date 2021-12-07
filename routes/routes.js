@@ -59,7 +59,7 @@ exports.logInAction = async (req, res) => {
     const userResults = await userCollection.findOne({username: req.body.username})
     client.close();
 
-    if(bcrypt.compareSync(req.body.password, userResults[0].saltHash)){
+    if(bcrypt.compareSync(req.body.password, userResults.password)){
         req.session.user = {
             isAuthenticated: true,
             username: req.body.username
