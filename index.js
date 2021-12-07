@@ -41,6 +41,8 @@ app.get("/slots", checkAuthorization, routes.slots);
 app.get("/roulette", checkAuthorization, routes.roulette);
 app.post("/changeNickName", checkAuthorization, routes.changeNickName);
 app.post("/changePassword", checkAuthorization, routes.changePassword);
+app.post("/addBal", routes.addBal);
+app.post("/remBal", routes.remBal);
 
 app.get('/logout', (req, res) => {
     req.session.destroy(err => {
