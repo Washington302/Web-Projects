@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 
 const url = `mongodb+srv://group:pro150@userinformation.xrasy.mongodb.net/UserInformation?retryWrites=true&w=majority`;
 
+
+
 const client =  new MongoClient(url);
 
 const dbName = 'UserInformation';
@@ -35,7 +37,8 @@ exports.signUpAction = async (req, res) => {
         nickname: req.body.username,
         password: hash,
         currency:1000,
-        email: req.body.email
+        email: req.body.email,
+        nickName: req.body.username
     }
     const insertResult = await userCollection.insertOne(account);
     client.close();
@@ -50,7 +53,6 @@ exports.logInAction = async (req, res) => {
     await client.connect();
     console.log(req.body.password)
     const userResults = userCollection.find({username: req.body.username})
-    client.close();
     if(bcrypt.hashSync(req.body.password, userResults.password)){
         req.session.user = {
             isAuthenticated: true,
@@ -63,6 +65,7 @@ exports.logInAction = async (req, res) => {
     }else{
         res.redirect("login")
     }
+    client.close();
 }
 
 exports.dashboard = (req, res) => {
