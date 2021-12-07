@@ -1,5 +1,5 @@
 var suits = ["spades", "diamonds", "clubs", "hearts"];
-var values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
+var values = ["14", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
 var myDeck = makeDeck();
 
 function makeDeck()
@@ -320,7 +320,7 @@ function checkForFlush(hand){
 function checkForStraight(hand){
     sortHand(hand);
 
-    if(hand[0].Value == 15 && hand[1].Value == 5){
+    if(hand[0].Value == 14 && hand[1].Value == 5){
         return (hand[2].Value == 4 && hand[3].Value == 3 && hand[4].Value == 2);
     }else{
         for(let i = 0; i < hand.length - 1; i++){
