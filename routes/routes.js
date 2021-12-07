@@ -58,7 +58,7 @@ exports.logInAction = async (req, res) => {
     await client.connect();
     console.log(req.body.password)
     const userResults = userCollection.find({username: req.body.username})
-    if(bcrypt.hashSync(req.body.password, userResults.password)){
+    if(bcrypt.hashSync(req.body.password, userResults.password) && userResults != undefined){
         req.session.user = {
             isAuthenticated: true,
             username: req.body.username
