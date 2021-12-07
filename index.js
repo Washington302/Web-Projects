@@ -2,13 +2,15 @@ const express = require('express'),
     pug = require('pug'),
     path = require('path'),
     routes = require('./routes/routes'),
-    http = require('http'),
-    server = http.createServer(app);
+    http = require('http');
+
+    const app = express();
+
+    const server = http.createServer(app);
 
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-const app = express();
 
 const expressSession = require('express-session');
 
