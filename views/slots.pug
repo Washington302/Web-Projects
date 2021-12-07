@@ -118,14 +118,39 @@ html(lang='en')
         let slot1 = document.getElementById("Slot1");
         let slot2 = document.getElementById("Slot2");
         let slot3 = document.getElementById("Slot3");
-        Spin();
+        let spinStuff = Spin();
         slot1.innerText = selectedIcons[0];
         slot2.innerText = selectedIcons[1];
         slot3.innerText = selectedIcons[2];
 
         if (!isStartUp) {
           if (selectedIcons[0] == selectedIcons[0] == selectedIcons[0]) {
-            
+            const money = {
+              money: spinStuff,
+              path: "/slots";
+            };
+            const options = {
+              method: 'POST',
+              body: JSON.stringify( money )  
+            };
+            fetch( '/addBal/', options )
+              .then( response => {
+                  // Do something with response.
+              } );
+          }
+          else {
+            const params = {
+              money: 50,
+              path: "/slots";
+            };
+            const options = {
+              method: 'POST',
+              body: JSON.stringify( params )  
+            };
+            fetch( '/remBal/', options )
+              .then( response => {
+                  // Do something with response.
+              } );
           }
         }
         else {

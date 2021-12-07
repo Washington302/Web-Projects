@@ -95,11 +95,27 @@ exports.poker = (req, res) => {
 
 exports.changeNickName = (req, res) => {
     client.connect();
-    const updateUser = userCollection.updateOne({nickname: req.body.Nickname})
+    const updateUser = userCollection.updateOne({username: req.session.username},{$set: {nickname: req.body.Nickname}});
     client.close();
     res.redirect("dashboard",{})
 }
 
 exports.changePassword = (req, res) => {
     res.redirect("dashboard",{})
+}
+
+exports.addBal = (req, res) => {
+    const findUser = userCollection.findOne({username: req.session.username});
+    let money = parseInt(findUser.currency);
+    money += req.body.money;
+    const updateUser = userCollection.updateOne({username: req.session.username},{$set: {currency, money}});
+    res.redirect(req.body.path, {})
+}
+
+exports.remBal = (req, res) => {
+    const findUser = userCollection.findOne({username: req.session.username});
+    let money = parseInt(findUser.currency);
+    money += req.body.money;
+    const updateUser = userCollection.updateOne({username: req.session.username},{$set: {currency, money}});
+    res.redirect(req.body.path, {})
 }
