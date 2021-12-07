@@ -56,9 +56,10 @@ exports.logIn = (req, res) => {
 
 exports.logInAction = async (req, res) => {
     await client.connect();
-    console.log(req.body.password)
-    const userResults = userCollection.find({username: req.body.username})
-    if(bcrypt.hashSync(req.body.password, userResults.password)){
+    const userResults = await userCollection.findOne({username: req.body.username})
+    client.close();
+
+    if(bcrypt.compareSync(req.body.password, userResults.password)){
         req.session.user = {
             isAuthenticated: true,
             username: req.body.username
@@ -66,11 +67,10 @@ exports.logInAction = async (req, res) => {
         res.render("dashboard",{
             title: "Dashboard",
             user: userResults
-        })
+        })  
     }else{
         res.redirect("login")
     }
-    client.close();
 }
 
 exports.dashboard = (req, res) => {
@@ -105,17 +105,21 @@ exports.changePassword = (req, res) => {
 }
 
 exports.addBal = (req, res) => {
+    client.connect();
     const findUser = userCollection.findOne({username: req.session.username});
     let money = parseInt(findUser.currency);
     money += req.body.money;
     const updateUser = userCollection.updateOne({username: req.session.username},{$set: {currency, money}});
+    client.close();
     res.redirect(req.body.path, {})
 }
 
 exports.remBal = (req, res) => {
+    client.connect();
     const findUser = userCollection.findOne({username: req.session.username});
     let money = parseInt(findUser.currency);
     money += req.body.money;
     const updateUser = userCollection.updateOne({username: req.session.username},{$set: {currency, money}});
+    client.close();
     res.redirect(req.body.path, {})
 }

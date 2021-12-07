@@ -7,7 +7,7 @@ html(lang='en')
     link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
     link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato')
     link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
-    link(rel='stylesheet' href='styles.css')
+    link(rel='stylesheet' href='style.css')
     style.
       body {
       font-family: "Lato", sans-serif
@@ -127,13 +127,13 @@ html(lang='en')
           if (selectedIcons[0] == selectedIcons[0] == selectedIcons[0]) {
             const money = {
               money: spinStuff,
-              path: "/slots"
+              path: "slots"
             };
             const options = {
               method: 'POST',
               body: JSON.stringify( money )  
             };
-            fetch( '/addBal/', options )
+            fetch( '/addBal', options )
               .then( response => {
                   // Do something with response.
               } );
@@ -141,13 +141,13 @@ html(lang='en')
           else {
             const params = {
               money: 50,
-              path: "/slots"
+              path: "slots"
             };
             const options = {
               method: 'POST',
               body: JSON.stringify( params )  
             };
-            fetch( '/remBal/', options )
+            fetch( '/remBal', options )
               .then( response => {
                   // Do something with response.
               } );
