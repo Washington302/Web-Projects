@@ -39,6 +39,8 @@ app.get("/poker", checkAuthorization, routes.poker);
 app.get("/blackjack", checkAuthorization, routes.blackjack);
 app.get("/slots", checkAuthorization, routes.slots);
 app.get("/roulette", checkAuthorization, routes.roulette);
+app.post("/changeNickName", checkAuthorization, routes.changeNickName);
+app.post("/changePassword", checkAuthorization, routes.changePassword);
 
 app.get('/logout', (req, res) => {
     req.session.destroy(err => {
