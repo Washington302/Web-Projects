@@ -1,47 +1,47 @@
-const row1 = {
-    1: 1,
-    2: 4,
-    3: 7,
-    4: 10,
-    5: 13,
-    6: 16,
-    7: 19,
-    8: 22,
-    9: 25,
-    10: 28,
-    11: 31,
-    12: 34
-};
-const row2 = {
-    1: 2,
-    2: 5,
-    3: 8,
-    4: 11,
-    5: 14,
-    6: 17,
-    7: 20,
-    8: 23,
-    9: 26,
-    10: 29,
-    11: 32,
-    12: 35
-};
-const row3 = {
-    1: 3,
-    2: 6,
-    3: 9,
-    4: 12,
-    5: 15,
-    6: 18,
-    7: 21,
-    8: 24,
-    9: 27,
-    10: 30,
-    11: 33,
-    12: 36
-};
+const row1 = [
+     1,
+     4,
+     7,
+     10,
+     13,
+     16,
+     19,
+     22,
+     25,
+     28,
+     31,
+     34
+];
+const row2 = [
+     2,
+     5,
+     8,
+     11,
+     14,
+     17,
+     20,
+     23,
+     26,
+     29,
+     32,
+     35
+];
+const row3 = [
+     3,
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30,
+     33,
+     36
+];
 function Spin(selectedNums, splitOrExact, bet, odd, even, red, black, first12, second12, third12){
-var hitNum = Math.random(1,36)
+var hitNum = Math.Floor(Math.random()*(36 - 1) +1)
 var reward = winCheck(hitNum, selectedNums, splitOrExact, bet, odd, even, red, black, first12, second12, third12)
 return reward
 }
