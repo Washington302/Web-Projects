@@ -105,17 +105,21 @@ exports.changePassword = (req, res) => {
 }
 
 exports.addBal = (req, res) => {
+    client.connect();
     const findUser = userCollection.findOne({username: req.session.username});
     let money = parseInt(findUser.currency);
     money += req.body.money;
     const updateUser = userCollection.updateOne({username: req.session.username},{$set: {currency, money}});
+    client.close();
     res.redirect(req.body.path, {})
 }
 
 exports.remBal = (req, res) => {
+    client.connect();
     const findUser = userCollection.findOne({username: req.session.username});
     let money = parseInt(findUser.currency);
     money += req.body.money;
     const updateUser = userCollection.updateOne({username: req.session.username},{$set: {currency, money}});
+    client.close();
     res.redirect(req.body.path, {})
 }
