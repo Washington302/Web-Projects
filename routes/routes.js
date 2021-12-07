@@ -3,8 +3,6 @@ const bcrypt = require('bcryptjs');
 
 const url = `mongodb+srv://group:pro150@userinformation.xrasy.mongodb.net/UserInformation?retryWrites=true&w=majority`;
 
-
-
 const client =  new MongoClient(url);
 
 const dbName = 'UserInformation';
@@ -81,16 +79,8 @@ exports.blackjack = (req, res) => {
     res.render("blackJack", {});
 };
 
-exports.roulette = (req, res) => {
-    res.render("roulette", {});
-};
-
 exports.slots = (req, res) => {
     res.render("slots", {});
-};
-
-exports.poker = (req, res) => {
-    res.render("poker", {});
 };
 
 exports.changeNickName = (req, res) => {

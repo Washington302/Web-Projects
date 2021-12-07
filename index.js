@@ -1,7 +1,12 @@
 const express = require('express'),
     pug = require('pug'),
     path = require('path'),
-    routes = require('./routes/routes');
+    routes = require('./routes/routes'),
+    http = require('http'),
+    server = http.createServer(app);
+
+const { Server } = require("socket.io");
+const io = new Server(server);
 
 const app = express();
 
@@ -35,10 +40,8 @@ app.post("/signup",urlEncodedParser, routes.signUpAction);
 app.get("/login", routes.logIn);
 app.post("/login", urlEncodedParser, routes.logInAction);
 app.get("/dashboard", checkAuthorization, routes.dashboard);
-app.get("/poker", checkAuthorization, routes.poker);
 app.get("/blackjack", checkAuthorization, routes.blackjack);
 app.get("/slots", checkAuthorization, routes.slots);
-app.get("/roulette", checkAuthorization, routes.roulette);
 app.post("/changeNickName", checkAuthorization, routes.changeNickName);
 app.post("/changePassword", checkAuthorization, routes.changePassword);
 app.post("/addBal", routes.addBal);
@@ -55,4 +58,11 @@ app.get('/logout', (req, res) => {
     });
 });
 
-app.listen(process.env.PORT || 3000);
+io.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+      console.log('user disconnected');
+    });
+});
+
+server.listen(process.env.PORT || 3000);
