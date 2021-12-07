@@ -56,9 +56,10 @@ exports.logIn = (req, res) => {
 
 exports.logInAction = async (req, res) => {
     await client.connect();
-    console.log(req.body.password)
-    const userResults = userCollection.find({username: req.body.username})
-    if(bcrypt.hashSync(req.body.password, userResults.password)){
+    const userResults = await userCollection.findOne({username: req.body.username})
+    client.close();
+
+    if(bcrypt.compareSync(req.body.password, userResults[0].saltHash)){
         req.session.user = {
             isAuthenticated: true,
             username: req.body.username
@@ -66,11 +67,10 @@ exports.logInAction = async (req, res) => {
         res.render("dashboard",{
             title: "Dashboard",
             user: userResults
-        })
+        })  
     }else{
         res.redirect("login")
     }
-    client.close();
 }
 
 exports.dashboard = (req, res) => {
