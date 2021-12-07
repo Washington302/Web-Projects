@@ -1,7 +1,12 @@
 const express = require('express'),
     pug = require('pug'),
     path = require('path'),
-    routes = require('./routes/routes');
+    routes = require('./routes/routes'),
+    http = require('http'),
+    server = http.createServer(app);
+
+const { Server } = require("socket.io");
+const io = new Server(server);
 
 const app = express();
 
@@ -55,4 +60,11 @@ app.get('/logout', (req, res) => {
     });
 });
 
-app.listen(process.env.PORT || 3000);
+io.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+      console.log('user disconnected');
+    });
+});
+
+server.listen(process.env.PORT || 3000);
