@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
   head
-    title Casino Website - Slots
+    title Casino Website - Home
     meta(charset='UTF-8')
     meta(name='viewport' content='width=device-width, initial-scale=1')
     link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
@@ -45,11 +45,10 @@ html(lang='en')
             #Slot3
               | ???
             .SlotButton
-              a(href='' onclick='function spinAndWin()')
+              a(href='' onclick='')
                 #ButtonSlots
                   h2(style='margin: 0;') Try Your Luck
         // Footer
-      script(src='slots.js')
       footer.w3-container.w3-padding-64.w3-center.w3-opacity.w3-light-grey.w3-xlarge
         a(href='#')
           i.fa.fa-facebook-official.w3-hover-opacity
@@ -79,49 +78,41 @@ html(lang='en')
         }
         }
         var reward = 0;
-        const returnRewards = {
-        slot1: '1000',
-        slot2: '2000',
-        slot3: '5000',
-        slot4: '8000',
-        slot5: '10000',
-        slot6: '20000',
-        slot7: '50000'
-        };
-        const Icons = {
-        slot1: 'grape',
-        slot2: 'strawberry',
-        slot3: 'pie',
-        slot4: 'lemon',
-        slot5: 'chest',
-        slot6: 'bar',
-        slot7: 'seven'
-        };
+        const returnRewards = [
+        1000,
+        2000,
+        5000,
+        8000,
+        10000,
+        20000,
+        50000
+        ];
+        const Icons = [
+        'grape',
+        'strawberry',
+        'pie',
+        'lemon',
+        'chest',
+        'bar',
+        'seven'
+        ];
         let selectedIcons = [];
         var slot = 0;
+        var isStartUp = true;
         for(var i = 0; i<=2;i++){
-        slot = Math.random(1,7)
-        selectedIcons.push(Icons[slot])
-        slot++;
+        slot = Math.floor(Math.random() * (7));
+        selectedIcons.push(Icons[slot]);
         }
         function Spin(){
         slot = 0;
         for(var i = 0; i<=2;i++){
-        slot = Math.random(1,7)
+        slot = Math.floor(Math.random() * (7));
         selectedIcons.push(Icons[slot])
         }
-        return winLose(slot)
+        return selectedIcons;
         }
         function getIcons() {
         return selectedIcons;
-        }
-        function winLose(slot){
-        if(selectedIcons[0] == selectedIcons[1] && selectedIcons[0] == selectedIcons[2]){
-        return returnRewards[slot]
-        }
-        else{
-        return 0;
-        }
         }
         function SetIconsgetIcons() {
         let slot1 = document.getElementById("Slot1");
@@ -129,7 +120,18 @@ html(lang='en')
         let slot3 = document.getElementById("Slot3");
         Spin();
         slot1.innerText = selectedIcons[0];
-        slot2.innerText = selectedIcons[0];
-        slot3.innerText = selectedIcons[0];
+        slot2.innerText = selectedIcons[1];
+        slot3.innerText = selectedIcons[2];
+
+        if (!isStartUp) {
+          if (selectedIcons[0] == selectedIcons[0] == selectedIcons[0]) {
+            
+          }
         }
+        else {
+          isStartUp = !isStartUp;
+        }
+
+        }
+
         SetIconsgetIcons();
