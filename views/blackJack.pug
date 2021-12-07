@@ -39,6 +39,7 @@ html(lang='en')
           i.fa.fa-twitter.w3-hover-opacity
         a(href='#')
           i.fa.fa-linkedin.w3-hover-opacity
+      script(src='/socket.io/socket.io.js')
       script.
         function myFunction() {
         var x = document.getElementById("navDemo");
@@ -55,4 +56,3 @@ html(lang='en')
         }
         }
         var socket = io();
-      script(src='/socket.io/socket.io.js')
