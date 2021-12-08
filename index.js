@@ -44,8 +44,6 @@ app.post("/login", urlEncodedParser, routes.logInAction);
 app.get("/dashboard", checkAuthorization, routes.dashboard);
 app.get("/blackjack", checkAuthorization, routes.blackjack);
 app.get("/slots", checkAuthorization, routes.slots);
-app.post("/changeNickName", checkAuthorization, routes.changeNickName);
-app.post("/changePassword", checkAuthorization, routes.changePassword);
 app.post("/addBal", routes.addBal);
 app.post("/remBal", routes.remBal);
 
