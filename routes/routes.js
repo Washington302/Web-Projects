@@ -88,7 +88,7 @@ exports.slots = (req, res) => {
 
 exports.changeNickName = async (req, res) => {
     client.connect();
-    const updateUser = userCollection.updateOne({username: req.session.username},{$set: {nickname: req.body.nickname}});
+    const updateUser = userCollection.updateOne({username: user.username},{$set: {nickname: req.body.nickname}});
     client.close();
     res.redirect("dashboard",{})
 }
