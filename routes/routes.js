@@ -62,17 +62,30 @@ exports.logInAction = async (req, res) => {
             isAuthenticated: true,
             username: req.body.username
         }
-        res.render("dashboard",{
-            title: "Dashboard",
-            user: userResults
-        })  
+        res.redirect("/dashboard");
+
+        // res.render("dashboard",{
+        //     title: "Dashboard",
+        //     user: userResults
+        // })  
     }else{
         res.redirect("login")
     }
 }
 
-exports.dashboard = (req, res) => {
-    res.render("dashboard",{});
+exports.dashboard = async (req, res) => {
+    await client.connect();
+let user = req.session.user;
+
+    const userResults = await userCollection.findOne({username: user.username})
+    client.close();
+
+
+    res.render("dashboard",{
+        title: "Dashboard",
+        user: userResults
+
+    });
 };
 
 exports.blackjack = async (req, res) => {
