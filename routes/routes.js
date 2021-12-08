@@ -99,22 +99,26 @@ exports.slots = (req, res) => {
 
 exports.changeNickName = async (req, res) => {
     client.connect();
-    const updateUser = userCollection.updateOne({username: req.session.username},{$set: {nickname: req.body.nickname}});
+    user = req.session.user;
+let newNickname = req.body.nickname;
+console.log(newNickname);
+
+    const updateUser = userCollection.replaceOne({username: user.username},{$set: {nickname: newNickname}});
     client.close();
     res.redirect("dashboard",{})
 }
 
-exports.changePassword = (req, res) => {
-    res.redirect("dashboard",{})
-}
+// exports.changePassword = (req, res) => {
+//     res.redirect("dashboard",{})
+// }
 
 exports.addBal = (req, res) => {
     client.connect();
     user = req.session.user;
-    const findUser = userCollection.findOne({username:user.username});
+    const findUser = userCollection.findOne({username: user.username});
     let money = parseInt(findUser.currency);
     money += req.body.money;
-    const updateUser = userCollection.updateOne({username: user.username},{$set: {currency, money}});
+    const updateUser = userCollection.replaceOne({username: user.username},{$set: {currency, money}});
     client.close();
     res.redirect(req.body.path, {})
 }

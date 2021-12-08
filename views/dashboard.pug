@@ -39,7 +39,7 @@ html(lang='en')
           .w3-half
             h2#usernameStuff.w3-center=`Balance: ${user.currency}`
         .w3-row-padding.w3-padding-32(style='margin:0 -16px')
-          h4#usernameStuff.w3-center You will be shown as: Test User.
+          h4#usernameStuff.w3-center= `You will be shown as: ${user.nickname}.`
         br
       // End Page Content
       // Footer

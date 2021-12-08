@@ -44,8 +44,9 @@ app.post("/login", urlEncodedParser, routes.logInAction);
 app.get("/dashboard", checkAuthorization, routes.dashboard);
 app.get("/blackjack", checkAuthorization, routes.blackjack);
 app.get("/slots", checkAuthorization, routes.slots);
-app.post("/addBal", routes.addBal);
-app.post("/remBal", routes.remBal);
+app.post("/addBal",urlEncodedParser, routes.addBal);
+app.post("/changeNickname",urlEncodedParser, routes.changeNickName);
+app.post("/remBal",urlEncodedParser, routes.remBal);
 
 app.get('/logout', (req, res) => {
     req.session.destroy(err => {
