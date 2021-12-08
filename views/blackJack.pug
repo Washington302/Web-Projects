@@ -1,58 +1,37 @@
 doctype html
-html(lang='en')
+html
   head
-    title Casino Website - Home
-    meta(charset='UTF-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1')
-    link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
-    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato')
-    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    title Socket.IO chat
     style.
-      body {font-family: "Lato", sans-serif}
-      .mySlides {display: none}
-      .fa {
-      font-size: 24px;
-      }
-      .tx {
-      font-size: 18px;
-      }
+      body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
+      #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
+      #input:focus { outline: none; }
+      #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages > li { padding: 0.5rem 1rem; }
+      #messages > li:nth-child(odd) { background: #efefef; }
   body
-    // Navbar
-    .w3-top
-      .w3-bar.w3-black.w3-card
-        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-medium.w3-hide-large.w3-right(href='javascript:void(0)' onclick='myFunction()' title='Toggle Navigation Menu')
-          i.fa.fa-bars
-        a.w3-bar-item.w3-button.w3-padding-large.tx(href='/') HOME
-    .w3-content(style='max-width:2000px;margin-top:46px')
-      // End Page Content
-      // Footer
-      footer.w3-container.w3-padding-64.w3-center.w3-opacity.w3-light-grey.w3-xlarge
-        a(href='#')
-          i.fa.fa-facebook-official.w3-hover-opacity
-        a(href='#')
-          i.fa.fa-instagram.w3-hover-opacity
-        a(href='#')
-          i.fa.fa-snapchat.w3-hover-opacity
-        a(href='#')
-          i.fa.fa-pinterest-p.w3-hover-opacity
-        a(href='#')
-          i.fa.fa-twitter.w3-hover-opacity
-        a(href='#')
-          i.fa.fa-linkedin.w3-hover-opacity
-      script(src='/socket.io/socket.io.js')
-      script.
-        function myFunction() {
-        var x = document.getElementById("navDemo");
-        if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-        } else {
-        x.className = x.className.replace(" w3-show", "");
-        }
-        }
-        var modal = document.getElementById('gameModal');
-        window.onclick = function(event) {
-        if (event.target == modal) {
-        modal.style.display = "none";
-        }
-        }
-        var socket = io();
+    ul#messages
+    form#form(action='')
+      input#input(autocomplete='off')
+      button Send
+    script(src='/socket.io/socket.io.js')
+    script.
+      var socket = io();
+      var messages = document.getElementById('messages');
+      var form = document.getElementById('form');
+      var input = document.getElementById('input');
+      form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (input.value) {
+      socket.emit('chat message', input.value);
+      input.value = '';
+      }
+      });
+      socket.on('chat message', function(msg) {
+      var item = document.createElement('li');
+      item.textContent = msg;
+      messages.appendChild(item);
+      window.scrollTo(0, document.body.scrollHeight);
+      });
