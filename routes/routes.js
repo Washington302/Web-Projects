@@ -76,7 +76,10 @@ exports.dashboard = (req, res) => {
 };
 
 exports.blackjack = (req, res) => {
-    res.render("blackJack", {});
+    const userResults = await userCollection.findOne({username: req.session.user.username});
+    res.render("blackJack", {
+        user: userResults
+    });
 };
 
 exports.slots = (req, res) => {
