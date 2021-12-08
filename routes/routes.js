@@ -28,7 +28,6 @@ exports.signUpAction = async (req, res) => {
     
     let pass = req.body.password;
     
-    console.log(pass);
     let hash = bcrypt.hashSync(pass, salt);
     let account = {
         username: req.body.username,
