@@ -37,7 +37,7 @@ exports.signUpAction = async (req, res) => {
         email: req.body.email,
     }
     const findUser = await userCollection.findOne({username: req.body.username});
-    if (findUser === undefined) {
+    if (!(findUser === undefined)) {
         const insertResult = await userCollection.insertOne(account);
     }
     else {
