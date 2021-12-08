@@ -75,7 +75,7 @@ exports.dashboard = (req, res) => {
     res.render("dashboard",{});
 };
 
-exports.blackjack = (req, res) => {
+exports.blackjack = async (req, res) => {
     const userResults = await userCollection.findOne({username: req.session.user.username});
     res.render("blackJack", {
         user: userResults
@@ -86,7 +86,7 @@ exports.slots = (req, res) => {
     res.render("slots", {});
 };
 
-exports.changeNickName = (req, res) => {
+exports.changeNickName = async (req, res) => {
     client.connect();
     const updateUser = userCollection.updateOne({username: req.session.username},{$set: {nickname: req.body.Nickname}});
     client.close();
