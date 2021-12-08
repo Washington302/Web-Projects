@@ -28,7 +28,6 @@ exports.signUpAction = async (req, res) => {
     
     let pass = req.body.password;
     
-    console.log(pass);
     let hash = bcrypt.hashSync(pass, salt);
     let account = {
         username: req.body.username,
@@ -38,7 +37,7 @@ exports.signUpAction = async (req, res) => {
         email: req.body.email,
     }
     const findUser = await userCollection.findOne({username: req.body.username});
-    if (findUser === undefined) {
+    if (!(findUser === undefined)) {
         const insertResult = await userCollection.insertOne(account);
     }
     else {
@@ -62,20 +61,33 @@ exports.logInAction = async (req, res) => {
             isAuthenticated: true,
             username: req.body.username
         }
-        res.render("dashboard",{
-            title: "Dashboard",
-            user: userResults
-        })  
+        res.redirect("/dashboard");
+
+        // res.render("dashboard",{
+        //     title: "Dashboard",
+        //     user: userResults
+        // })  
     }else{
         res.redirect("login")
     }
 }
 
-exports.dashboard = (req, res) => {
-    res.render("dashboard",{});
+exports.dashboard = async (req, res) => {
+    await client.connect();
+let user = req.session.user;
+
+    const userResults = await userCollection.findOne({username: user.username})
+    client.close();
+
+
+    res.render("dashboard",{
+        title: "Dashboard",
+        user: userResults
+
+    });
 };
 
-exports.blackjack = (req, res) => {
+exports.blackjack = async (req, res) => {
     const userResults = await userCollection.findOne({username: req.session.user.username});
     res.render("blackJack", {
         user: userResults
@@ -86,9 +98,10 @@ exports.slots = (req, res) => {
     res.render("slots", {});
 };
 
-exports.changeNickName = (req, res) => {
+exports.changeNickName = async (req, res) => {
     client.connect();
-    const updateUser = userCollection.updateOne({username: req.session.username},{$set: {nickname: req.body.Nickname}});
+    let userData = req.session.user
+    const updateUser = userCollection.updateOne({username: userData.username},{$set: {nickname: req.body.nickname}});
     client.close();
     res.redirect("dashboard",{})
 }
@@ -99,20 +112,21 @@ exports.changePassword = (req, res) => {
 
 exports.addBal = (req, res) => {
     client.connect();
-    const findUser = userCollection.findOne({username: req.session.username});
+    let userData = req.session.user
+    const findUser = userCollection.findOne({username: userData.username});
     let money = parseInt(findUser.currency);
     money += req.body.money;
-    const updateUser = userCollection.updateOne({username: req.session.username},{$set: {currency, money}});
+    const updateUser = userCollection.updateOne({username: userData.username},{$set: {currency, money}});
     client.close();
     res.redirect(req.body.path, {})
 }
 
 exports.remBal = (req, res) => {
     client.connect();
-    const findUser = userCollection.findOne({username: req.session.username});
+    const findUser = userCollection.findOne({username: userData.username});
     let money = parseInt(findUser.currency);
     money += req.body.money;
-    const updateUser = userCollection.updateOne({username: req.session.username},{$set: {currency, money}});
+    const updateUser = userCollection.updateOne({username: userData.username},{$set: {currency, money}});
     client.close();
     res.redirect(req.body.path, {})
 }

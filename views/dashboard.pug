@@ -50,16 +50,16 @@ html(lang='en')
           .w3-half
             h2#usernameStuff.w3-center=`Balance: ${user.currency}`
         .w3-row-padding.w3-padding-32(style='margin:0 -16px')
-          h4#usernameStuff.w3-center You will be shown as: Test User.
+          h4#usernameStuff.w3-center=`You will be shown as: ${user.nickname}.`
         .w3-row-padding.w3-padding-32(style='margin:0 -16px')
           form(action='/changeNickName' method="post")
-            input.w3-input.w3-border(type='text' placeholder='Nickname' required='' name='Nickname')
+            input.w3-input.w3-border(type='text', placeholder='Nickname', name='nickname')
             button.w3-button.w3-black.w3-section.w3-right(type='submit') CHANGE NICKNAME
         .w3-row-padding.w3-padding-32(style='margin:0 -16px')
           form(action='/changePassword' method="post")
-            input.w3-input.w3-border(type='password' placeholder='Password' required='' name='Password')
+            input.w3-input.w3-border(type='password', placeholder='Password', name='Password')
             br
-            input.w3-input.w3-border(type='password' placeholder='Retype Password' required='' name='Password1')
+            input.w3-input.w3-border(type='password', placeholder='Retype Password', name='Password1')
             button.w3-button.w3-black.w3-section.w3-right(type='submit') CHANGE PASSWORD
       // End Page Content
       // Footer
