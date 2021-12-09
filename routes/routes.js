@@ -41,9 +41,6 @@ exports.signUpAction = async (req, res) => {
     if (findUser === undefined) {
         const insertResult = await userCollection.insertOne(account);
     }
-    else {
-        alert("Could not create an account. Please use a different username.");
-    }
     client.close();
     res.redirect("/")
 };
@@ -114,7 +111,7 @@ exports.slots = (req, res) => {
 
 exports.addBal = async (req, res) => {
     user = req.session.user;
-    client.connect();
+    await client.connect();
     const findUser = await userCollection.findOne({username: user.username});
     let money = parseInt(findUser.currency);
     money += req.body.money;
@@ -125,7 +122,7 @@ exports.addBal = async (req, res) => {
 
 exports.remBal = async (req, res) => {
     user = req.session.user;
-    client.connect();
+    await client.connect();
     const findUser = await userCollection.findOne({username: user.username});
     let money = parseInt(findUser.currency);
     money += req.body.money;
