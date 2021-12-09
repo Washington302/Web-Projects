@@ -158,30 +158,24 @@ html(lang='en')
         slot2.innerText = selectedIcons[1];
         slot3.innerText = selectedIcons[2];
 
-        if (!isStartUp) {
-          if (selectedIcons[0] == selectedIcons[0] == selectedIcons[0]) {
-            const request = new XMLHttpRequest();
-            var theUrl = "/addBal";
-            var money = 500
-            request.open("POST", theUrl);
-            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            request.send(JSON.stringify({"money": money}));
-            request.onload = ()=> {
-            };
-          }
-          else {
-            const request = new XMLHttpRequest(); 
-            var theUrl = "/remBal";
-            var money = 50;
-            request.open("POST", theUrl);
-            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            request.send(JSON.stringify({"money": money}));
-            request.onload = ()=> {
-            };
-          }
+        if (selectedIcons[0] == selectedIcons[0] == selectedIcons[0]) {
+          const request = new XMLHttpRequest();
+          var theUrl = "/addBal";
+          var money = 500
+          request.open("POST", theUrl);
+          request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+          request.send(JSON.stringify({"money": money}));
+          request.onload = ()=> {
+          };
         }
         else {
-          isStartUp = !isStartUp;
+          const request = new XMLHttpRequest(); 
+          var theUrl = "/remBal";
+          var money = 50;
+          request.open("POST", theUrl);
+          request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+          request.send(JSON.stringify({"money": money}));
+          request.onload = ()=> {
+          };
         }
-
         }
