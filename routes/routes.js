@@ -109,7 +109,7 @@ exports.addBal = async (req, res) => {
     await client.connect();
     const findUser = await userCollection.findOne({username: user.username});
     var money = parseInt(findUser.currency);
-    money += parseInt(req.body.money);
+    money = parseInt(money) + parseInt(req.body.money);
     const updateUser = await userCollection.replaceOne({username: user.username},{$set: {currency: parseInt(money)}});
     client.close();
     res.render("slots", {});
@@ -120,7 +120,7 @@ exports.remBal = async (req, res) => {
     await client.connect();
     const findUser = await userCollection.findOne({username: user.username});
     var money = parseInt(findUser.currency);
-    money -= parseInt(req.body.money);
+    money = parseInt(money) - parseInt(req.body.money);
     const updateUser = await userCollection.updateOne({username: user.username},{$set: {currency: parseInt(money)}});
     client.close();
     res.render("slots", {});
