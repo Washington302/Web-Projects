@@ -53,12 +53,12 @@ exports.logInAction = async (req, res) => {
     await client.connect();
     const userResults = await userCollection.findOne({username: req.body.username})
     client.close();
-
     if(bcrypt.compareSync(req.body.password, userResults.password)){
         req.session.user = {
             isAuthenticated: true,
             username: req.body.username
-        } 
+        }
+    
         res.redirect("/dashboard")
     }else{
         res.redirect("login")
