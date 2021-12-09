@@ -34,7 +34,7 @@ exports.signUpAction = async (req, res) => {
         username: req.body.username,
         nickname: req.body.username,
         password: hash,
-        currency:1000,
+        currency: 1000,
         email: req.body.email,
     }
     const findUser = await userCollection.findOne({username: req.body.username});
@@ -109,7 +109,7 @@ exports.addBal = async (req, res) => {
     await client.connect();
     const findUser = await userCollection.findOne({username: user.username});
     var money = parseInt(findUser.currency);
-    money = parseInt(money) + parseInt(req.body.money);
+    console.log(req.body);
     const updateUser = await userCollection.replaceOne({username: user.username},{$set: {currency: parseInt(money)}});
     client.close();
     res.render("slots", {});
@@ -120,8 +120,8 @@ exports.remBal = async (req, res) => {
     await client.connect();
     const findUser = await userCollection.findOne({username: user.username});
     var money = parseInt(findUser.currency);
-    money = parseInt(money) - parseInt(req.body.money);
+    console.log(req.body);
     const updateUser = await userCollection.updateOne({username: user.username},{$set: {currency: parseInt(money)}});
     client.close();
-    res.render("slots", {});
+    res.render("slots");
 }

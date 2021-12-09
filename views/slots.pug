@@ -162,18 +162,20 @@ html(lang='en')
           if (selectedIcons[0] == selectedIcons[0] == selectedIcons[0]) {
             const request = new XMLHttpRequest();
             var theUrl = "/addBal";
+            var money = 500
             request.open("POST", theUrl);
             request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            request.send(JSON.stringify({"money": spinStuff}));
+            request.send(JSON.stringify({"money": money}));
             request.onload = ()=> {
             };
           }
           else {
             const request = new XMLHttpRequest(); 
             var theUrl = "/remBal";
+            var money = 50;
             request.open("POST", theUrl);
             request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            request.send(JSON.stringify({"money":50}));
+            request.send(JSON.stringify({"money": money}));
             request.onload = ()=> {
             };
           }
