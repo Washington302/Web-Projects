@@ -21,6 +21,40 @@ html(lang='en')
       .tx {
       font-size: 18px;
       }
+
+      #ButtonSlots {
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+      height: 100%;
+      padding: 0;
+      background-color: aquamarine;
+      cursor: pointer;
+      user-select: none;
+      border-radius: 100px;
+      }
+
+      .container {
+      display: grid; 
+      grid-template-columns: 1fr 1fr 1fr; 
+      grid-template-rows: 0.2fr 1fr 0.2fr; 
+      gap: 0px 0px; 
+      grid-template-areas: 
+        "SlotInfo1 SlotInfo2 SlotInfo3"
+        "Slot1 Slot2 Slot3"
+        "SlotButton SlotButton SlotButton"; 
+      }
+      .SlotInfo1 { grid-area: SlotInfo1; background-color: black; color: white;}
+      .SlotInfo2 { grid-area: SlotInfo2; background-color: black; color: white;}
+      .SlotInfo3 { grid-area: SlotInfo3; background-color: black; color: white;}
+      #Slot1 { grid-area: Slot1; height: 20em; background: linear-gradient(90deg, rgba(222,222,222,1) 0%, rgba(236,236,236,1) 2%, rgba(255,255,255,1) 5%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 95%, rgba(236,236,236,1) 98%, rgba(222,222,222,1) 100%);}
+      #Slot2 { grid-area: Slot2; height: 20em; background: linear-gradient(90deg, rgba(222,222,222,1) 0%, rgba(236,236,236,1) 2%, rgba(255,255,255,1) 5%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 95%, rgba(236,236,236,1) 98%, rgba(222,222,222,1) 100%);}
+      #Slot3 { grid-area: Slot3; height: 20em; background: linear-gradient(90deg, rgba(222,222,222,1) 0%, rgba(236,236,236,1) 2%, rgba(255,255,255,1) 5%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 95%, rgba(236,236,236,1) 98%, rgba(222,222,222,1) 100%);}
+      .SlotButton { grid-area: SlotButton; user-select: none; }
+
+      a {
+        text-decoration: none;
+      }
   body
     // Navbar
     .w3-top
@@ -105,11 +139,12 @@ html(lang='en')
         }
         function Spin(){
         slot = 0;
+        selectedIcons.length = 0;
         for(var i = 0; i<=2;i++){
         slot = Math.floor(Math.random() * (7));
         selectedIcons.push(Icons[slot])
         }
-        return selectedIcons;
+        return returnRewards[slot];
         }
         function getIcons() {
         return selectedIcons;
@@ -125,32 +160,22 @@ html(lang='en')
 
         if (!isStartUp) {
           if (selectedIcons[0] == selectedIcons[0] == selectedIcons[0]) {
-            const money = {
-              money: spinStuff,
-              path: "slots"
+            const request = new XMLHttpRequest();
+            var theUrl = "/addBal";
+            request.open("POST", theUrl);
+            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            request.send(JSON.stringify({"money": spinStuff}));
+            request.onload = ()=> {
             };
-            const options = {
-              method: 'POST',
-              body: JSON.stringify( money )  
-            };
-            fetch( '/addBal', options )
-              .then( response => {
-                  // Do something with response.
-              } );
           }
           else {
-            const params = {
-              money: 50,
-              path: "slots"
+            const request = new XMLHttpRequest(); 
+            var theUrl = "/remBal";
+            request.open("POST", theUrl);
+            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            request.send(JSON.stringify({"money":50}));
+            request.onload = ()=> {
             };
-            const options = {
-              method: 'POST',
-              body: JSON.stringify( params )  
-            };
-            fetch( '/remBal', options )
-              .then( response => {
-                  // Do something with response.
-              } );
           }
         }
         else {

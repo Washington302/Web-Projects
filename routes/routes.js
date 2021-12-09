@@ -41,9 +41,6 @@ exports.signUpAction = async (req, res) => {
     if (findUser === undefined) {
         const insertResult = await userCollection.insertOne(account);
     }
-    else {
-        alert("Could not create an account. Please use a different username.");
-    }
     client.close();
     res.redirect("/")
 };
@@ -112,24 +109,24 @@ exports.slots = (req, res) => {
 //     res.redirect("dashboard",{})
 // }
 
-exports.addBal = (req, res) => {
-    client.connect();
+exports.addBal = async (req, res) => {
     user = req.session.user;
-    const findUser = userCollection.findOne({username: user.username});
+    await client.connect();
+    const findUser = await userCollection.findOne({username: user.username});
     let money = parseInt(findUser.currency);
     money += req.body.money;
-    const updateUser = userCollection.updateOne({username: user.username},{$set: {currency, money}});
+    const updateUser = await userCollection.replaceOne({username: user.username},{$set: {currency, money}});
     client.close();
     res.redirect(req.body.path, {})
 }
 
-exports.remBal = (req, res) => {
-    client.connect();
+exports.remBal = async (req, res) => {
     user = req.session.user;
-    const findUser = userCollection.findOne({username: user.username});
+    await client.connect();
+    const findUser = await userCollection.findOne({username: user.username});
     let money = parseInt(findUser.currency);
     money += req.body.money;
-    const updateUser = userCollection.updateOne({username: user.username},{$set: {currency, money}});
+    const updateUser = await userCollection.updateOne({username: user.username},{$set: {currency, money}});
     client.close();
     res.redirect(req.body.path, {})
 }
