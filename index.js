@@ -14,6 +14,8 @@ const io = new Server(server);
 
 const expressSession = require('express-session');
 
+app.use(express.json());
+
 app.use(expressSession({
     secret:'whatever',
     saveUninitialized: true,

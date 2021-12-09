@@ -159,25 +159,29 @@ html(lang='en')
         slot3.innerText = selectedIcons[2];
 
         if (!isStartUp) {
-          if (selectedIcons[0] == selectedIcons[0] == selectedIcons[0]) {
-            const request = new XMLHttpRequest();
-            var theUrl = "/addBal";
-            var money = 500
-            request.open("POST", theUrl);
-            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            request.send(JSON.stringify({"money": money}));
-            request.onload = ()=> {
-            };
+          if (selectedIcons[0] == selectedIcons[1] && selectedIcons[1] == selectedIcons[2]) {
+            const money = spinStuff;
+            const data = {money};
+            const options = {
+              method: 'POST',
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(data)
+            }
+            fetch("/remBal", options)
           }
           else {
-            const request = new XMLHttpRequest(); 
-            var theUrl = "/remBal";
-            var money = 50;
-            request.open("POST", theUrl);
-            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            request.send(JSON.stringify({"money": money}));
-            request.onload = ()=> {
-            };
+            const money = 50;
+            const data = {money};
+            const options = {
+              method: 'POST',
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(data)
+            }
+            fetch("/remBal", options)
           }
         }
         else {
