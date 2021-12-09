@@ -29,6 +29,9 @@ html(lang='en')
         a.w3-bar-item.w3-button.w3-padding-large.w3-hide-small.w3-right(href='/signup')
           i.fa.fa-user-circle
           |  SIGN UP
+        a.w3-bar-item.w3-button.w3-padding-large.w3-hide-small.w3-right(href='/logout')
+          i.fa.fa-sign-out
+          |  LOG OUT
     #navDemo.w3-bar-block.w3-black.w3-hide.w3-hide-large.w3-hide-medium.w3-top(style='margin-top:46px')
       a.w3-bar-item.w3-button.w3-padding-large(href='/signup' onclick='myFunction()')
         i.fa.fa-user-circle
@@ -36,6 +39,9 @@ html(lang='en')
       a.w3-bar-item.w3-button.w3-padding-large(href='/login' onclick='myFunction()')
         i.fa.fa-sign-in
         |  LOG IN
+        a.w3-bar-item.w3-button.w3-padding-large(href='/logout' onclick='myFunction()')
+        i.fa.fa-user-circle
+        |  LOG OUT
     .w3-content(style='max-width:2000px;margin-top:46px')
       .mySlides.w3-display-container.w3-center
         img(src='ProductRobot.png' style='width:100%')
