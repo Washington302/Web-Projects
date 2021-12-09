@@ -97,15 +97,16 @@ exports.slots = (req, res) => {
     res.render("slots", {});
 };
 
-exports.changeNickName = async (req, res) => {
-    client.connect();
-    user = req.session.user;
-    let newNickname = req.body.nickname;
-    console.log(newNickname);
-    const updateUser = userCollection.replaceOne({username: user.username},{$set: {nickname: newNickname}});
-    client.close();
-    res.redirect("dashboard",{})
-}
+// exports.changeNickName = async (req, res) => {
+//     client.connect();
+//     user = req.session.user;
+// let newNickname = req.body.nickname;
+// console.log(newNickname);
+
+//     const updateUser = userCollection.replaceOne({username: user.username},{$set: {nickname: newNickname}});
+//     client.close();
+//     res.redirect("dashboard",{})
+// }
 
 // exports.changePassword = (req, res) => {
 //     res.redirect("dashboard",{})
