@@ -159,8 +159,8 @@ html(lang='en')
         slot3.innerText = selectedIcons[2];
 
         if (!isStartUp) {
-          if (slot1.innerText == slot2.innerText && slot2.innerText == slot3.innerText) {
-            alert("You Won! - " + slot1.innerText + "|" + slot2.innerText +  "|" + slot3.innerText)
+          if (selectedIcons[0] == selectedIcons[1] && selectedIcons[1] == selectedIcons[2]) {
+            alert("You Won! - " + selectedIcons[0] + "|" + selectedIcons[1] +  "|" + selectedIcons[2])
             const money = spinStuff;
             const data = {money};
             const options = {
@@ -173,7 +173,7 @@ html(lang='en')
             fetch("/remBal", options)
           }
           else {
-            alert("You Lost! - " + slot1 + "|" + slot2 +  "|" + slot3)
+            alert("You Lost! - " + selectedIcons[0] + "|" + selectedIcons[1] +  "|" + selectedIcons[2])
             const money = 50;
             const data = {money};
             const options = {
