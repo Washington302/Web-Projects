@@ -58,11 +58,7 @@ exports.logInAction = async (req, res) => {
         req.session.user = {
             isAuthenticated: true,
             username: req.body.username
-        }
-        // res.render("dashboard",{
-        //     title: "Dashboard",
-        //     user: userResults
-        // }) 
+        } 
         res.redirect("/dashboard")
     }else{
         res.redirect("login")
@@ -70,7 +66,6 @@ exports.logInAction = async (req, res) => {
 }
 
 exports.dashboard = async (req, res) => {
-    
     await client.connect();
     let user = req.session.user;
     const userResults = await userCollection.findOne({username: user.username})
@@ -113,20 +108,20 @@ exports.addBal = async (req, res) => {
     user = req.session.user;
     await client.connect();
     const findUser = await userCollection.findOne({username: user.username});
-    let money = parseInt(findUser.currency);
+    let money = findUser.currency;
     money += req.body.money;
-    const updateUser = await userCollection.replaceOne({username: user.username},{$set: {currency, money}});
+    const updateUser = await userCollection.replaceOne({username: user.username},{$set: {currency: money}});
     client.close();
-    res.redirect(req.body.path, {})
+    res.redirect("slots")
 }
 
 exports.remBal = async (req, res) => {
     user = req.session.user;
     await client.connect();
     const findUser = await userCollection.findOne({username: user.username});
-    let money = parseInt(findUser.currency);
-    money += req.body.money;
-    const updateUser = await userCollection.updateOne({username: user.username},{$set: {currency, money}});
+    let money = findUser.currency;
+    money -= req.body.money;
+    const updateUser = await userCollection.updateOne({username: user.username},{$set: {currency: money}});
     client.close();
-    res.redirect(req.body.path, {})
+    res.redirect("slots")
 }
