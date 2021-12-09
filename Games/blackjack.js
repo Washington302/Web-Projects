@@ -4,6 +4,40 @@ var myDeck = makeDeck();
 
 let dealer;
 
+//takes in an array of arrays to represent each player
+    //these arrays will be used as the players hands
+async function playGameTest(players){
+    //make the deck
+    myDeck = makeDeck();
+    shuffle(myDeck);
+    InIt();
+
+    //foreach player
+        //get card 1
+        //hit(playerHand);
+        //get card 2
+        //hit(playerHand);
+        //run until they hit stand and declare quit to be false
+        //let quit = false;
+    
+        //while(!quit)
+            //give option to hit/stand/(maybe)doubledown
+            //IF
+                //hit
+                    //hit(playerHand);
+                //stand
+                    //quit = true;
+    
+    
+    //take the dealers turn
+    dealerTurn();
+
+    //check the hands to find the winner
+    //foreach player
+        //findWinners(player);
+    //give rewards
+}
+
 function makeDeck()
 {
 	let deck = new Array();
